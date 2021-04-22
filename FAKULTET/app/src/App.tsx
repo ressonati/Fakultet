@@ -7,34 +7,38 @@ import Counter from './components/Counter';
 
 
 
-const App = () =>{
-  const addedNumber = addNumber(1,2);
-  const [changedNumber, setChangedNumber]=React.useState(0);
- 
-  const handleNumberChange =(newNumber:number)=>{
-    setChangedNumber(newNumber);
-    //console.log(newNumber);
-    //return newNumber;
+const App = () => {
+  const addedNumber = addNumber(1, 2);
+  const [changedNumber, setChangedNumber] = React.useState(0)
+  const handleNumberChange = (newNumber: number) => {
+    setChangedNumber(newNumber); 
   }
-  const lessThanZero=(liczba:number)=>{
-    if (liczba<0)
+
+  const NumberService = (liczba: number) => {
+
+    if(liczba < -10)
     {
-      return (<div> liczba mniejsza od 0</div>)
+      return (<div>Liczba jest mniejsza od -10</div>)
     }
 
+    if(liczba > 15)
+    {
+      return (<div>Liczba przekroczona</div>)
+    }
+
+    if(liczba > 10 && liczba < 16)
+    {
+      return (<div>Liczba jest wieksza od 10</div>)
+    }
   }
- 
+
   return (
     <div className="App">
-        <CustomHeader>
-          <Counter onNumberChange={handleNumberChange} />
-          {
-            changedNumber >0 && (<div>liczba jest wieksza od 0</div>)
-          }
-          {lessThanZero(changedNumber)}
-        </CustomHeader>
+      <CustomHeader>
         
-      
+        <Counter onNumberChange={handleNumberChange}/>
+        {NumberService(changedNumber)}
+        </CustomHeader>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles =makeStyles({
     
     drawer: {
-        width: '10 rem',
+        width: '100px',
     },
     menuIcon: {
         cursor: 'pointer',

@@ -1,44 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import CustomHeader, { addNumber } from './components/CustomHeader';
-import Counter from './components/Counter';
+import {Switch, Route, BrowserRouter} from 'react-router-dom';
 
+import Home from './views/home/Home';
+import Movie from './views/movie/Movie';
+import Page404 from './views/page404/Page404'
+
+import './App.css';
 
 
 
 const App = () => {
-  const addedNumber = addNumber(1, 2);
-  const [changedNumber, setChangedNumber] = React.useState(0)
-  const handleNumberChange = (newNumber: number) => {
-    setChangedNumber(newNumber); 
-  }
-
-  const NumberService = (liczba: number) => {
-
-    if(liczba < -10)
-    {
-      return (<div>Liczba jest mniejsza od -10</div>)
-    }
-
-    if(liczba > 15)
-    {
-      return (<div>Liczba przekroczona</div>)
-    }
-
-    if(liczba > 10 && liczba < 16)
-    {
-      return (<div>Liczba jest wieksza od 10</div>)
-    }
-  }
-
+  
   return (
     <div className="App">
-      <CustomHeader>
-        
-        <Counter onNumberChange={handleNumberChange}/>
-        {NumberService(changedNumber)}
-        </CustomHeader>
+      <BrowserRouter> 
+      <Switch>
+        <Route path="/movie/:id" component={Movie} />
+        <Route path="/" component={Home} exact />
+        <Route path="*" component= {Page404} />
+      </Switch>
+      </BrowserRouter>
     </div>
   );
 }

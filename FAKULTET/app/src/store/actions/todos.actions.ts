@@ -5,22 +5,18 @@ export enum TodoStoreActions {
     SET_TODO_DONE = 'SET_TODO_DONE',
     SET_DELETE_TODO = 'SET_DELETE_TODO',
 }
-
-
 export interface SetNewTodoAction {
     type: TodoStoreActions.SET_NEW_TODO,
     payload: {
         todo: Todo
     }
 }
-
 export interface SetTodoDoneAction {
     type: TodoStoreActions.SET_TODO_DONE,
     payload: {
         id: number,
     }
 }
-
 export interface setDeleteTodoAction{
     type: TodoStoreActions.SET_DELETE_TODO,
     payload: {
@@ -28,19 +24,19 @@ export interface setDeleteTodoAction{
     }
 }
 
-export type Actions = SetNewTodoAction & SetTodoDoneAction & setDeleteTodoAction;
+export type Actions = SetNewTodoAction | SetTodoDoneAction | setDeleteTodoAction;
 
-export const TodosActions = {
+export const todosAtions = {
     setNewTodo: (todo: Todo) => ({
         type: TodoStoreActions.SET_NEW_TODO,
-        payload: {
-            todo
-        }
+        payload: { todo }
     }),
-
     setToDoDone: (id: number): SetTodoDoneAction =>({
         type: TodoStoreActions.SET_TODO_DONE,
         payload: { id }
     }),
-    setDeleteTodo: () => ({}),
+    setDeleteTodo: (todo: Todo): setDeleteTodoAction => ({
+        type: TodoStoreActions.SET_DELETE_TODO,
+        payload: { todo }
+    }),
 }
